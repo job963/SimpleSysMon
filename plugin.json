@@ -1,10 +1,10 @@
 {
     "name": "SimpleSysMon",
-    "description": "Simple System Monitor: Plugin for analyzing and visualizing system data.",
+    "description": "Simple System Monitor: Plugin for analyzing and visualizing system load data.",
     "version": "0.1.0",
-    "keywords": ["system", "monitor", "load", "memory"],
-    "homepage": "https://github.com/job963",
-    "license": "GPL v3+",
+    "keywords": ["system", "monitor", "load", "memory", "live"],
+    "homepage": "https://github.com/job963/SimpleSysMon",
+    "license": "GPL-3.0+",
     "authors": [
         {
             "name": "Joachim Barthel",

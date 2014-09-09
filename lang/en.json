@@ -1,6 +1,6 @@
 {
     "SimpleSysMon": {
-        "PluginDescription": "Simple System Monitor: This Plugin ... .",
+        "PluginDescription": "Simple System Monitor: Plugin for analyzing and visualizing system load data.",
 	"SimpleSysMon": "Simple System Monitor",
 	"widgetLiveLoad": "Live System Load",
         "SystemLoad": "System Load",
