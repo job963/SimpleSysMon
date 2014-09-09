@@ -1,0 +1,19 @@
+{
+    "SimpleSysMon": {
+        "PluginDescription": "Simple System Monitor: Dieses Plugin ... .",
+	"SimpleSysMon": "Simple System Monitor",
+	"widgetLiveLoad": "Live Systemwerte",
+        "SystemLoad": "System Auslastung",
+        "FreeMemory": "Freier Speicher",
+        "Cores": "Kerne",
+        "SettingsDescription": "Einstellungen für das Plugin Simple System Monitor",
+        "AutoRefreshLabel": "Automatische Aktualisierung",
+        "AutoRefreshDescription": "Aktiviert die automatische Aktualisierung der Werte im Widget",
+        "RefreshIntervalLabel": "Aktualisierungsintervall",
+        "RefreshIntervalDescription": "Zeit in Sekunden",
+        "RefreshIntervalHelp": "Geben sie einen Wert >= 5 ein",
+        "ErrMsgWrongValue": "Fehlerhafte Eingabe"
+        
+    }
+}
+

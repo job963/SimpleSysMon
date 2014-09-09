@@ -1,0 +1,12 @@
+{
+    "SimpleSysMon": {
+        "PluginDescription": "Simple System Monitor: This Plugin ... .",
+	"SimpleSysMon": "Simple System Monitor",
+	"widgetLiveLoad": "Live System Load",
+        "SystemLoad": "System Load",
+        "FreeMemory": "Free Memory",
+        "Cores": "Cores",
+        "SettingsDescription": "Settings for SimpleSysMon"
+    }
+}
+

@@ -1,0 +1,29 @@
+{# Template for visualizing the system performance data #}
+
+<style>
+
+</style>
+
+<table border="0" width="100%">
+    <tr>
+        <td colspan="5" height="6"></td>
+    </tr>
+    <tr>
+        <td width="6"></td>
+        <td width="30%" style="text-align:center;vertical-align:middle;">
+            <div style="white-space:nowrap;">{{'SimpleSysMon_SystemLoad'|translate}}</div>
+            <div style="margin-top:8px;font-size:1.2em;font-weight:bold;">{{ sysLoad|number_format }} %</b> </div>
+            <div>({{numCores}}&nbsp;{{'SimpleSysMon_Cores'|translate}})</div>
+        </td>
+        <td width="20" style="text-align:center;vertical-align:middle;">&nbsp;</td>
+        <td width="30%" style="text-align:center;vertical-align:middle;">
+            <div style="white-space:nowrap;">{{'SimpleSysMon_FreeMemory'|translate}}</div>
+            <div style="margin-top:8px;font-size:1.2em;font-weight:bold;">{{ memFreeVal }} MB</b></div>
+            <div>({{ memFreeProc|number_format }}&nbsp;%)</div>
+        </td>
+        <td width="6"></td>
+    </tr>
+    <tr>
+        <td colspan="5" height="6"></td>
+    </tr>
+</table>
