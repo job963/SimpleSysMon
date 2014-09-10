@@ -13,7 +13,6 @@
         "RefreshIntervalDescription": "Zeit in Sekunden",
         "RefreshIntervalHelp": "Geben sie einen Wert >= 5 ein",
         "ErrMsgWrongValue": "Fehlerhafte Eingabe"
-        
     }
 }
 

@@ -6,7 +6,13 @@
         "SystemLoad": "System Load",
         "FreeMemory": "Free Memory",
         "Cores": "Cores",
-        "SettingsDescription": "Settings for SimpleSysMon"
+        "SettingsDescription": "Settings for SimpleSysMon",
+        "AutoRefreshLabel": "Automatic Refresh",
+        "AutoRefreshDescription": "Aktivates the automatic refresh of the values",
+        "RefreshIntervalLabel": "Refresh interval",
+        "RefreshIntervalDescription": "Time in seconds",
+        "RefreshIntervalHelp": "Enter a value >= 5",
+        "ErrMsgWrongValue": "Wrong input"
     }
 }
 

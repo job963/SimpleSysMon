@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Piwik - Open source web analytics
  * 
@@ -8,8 +9,8 @@
  * @copyright (c) 2011-2014, Joachim Barthel
  * @author Joachim Barthel <jobarthel@gmail.com>
  * @category Piwik_Plugins
- * @package OXID_Analysis
- */
+ * @package SimpleSysMon
+ **/
 
 namespace Piwik\Plugins\SimpleSysMon;
 

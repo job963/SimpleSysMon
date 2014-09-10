@@ -1,8 +1,8 @@
 {
     "name": "SimpleSysMon",
-    "description": "Simple System Monitor: Plugin for analyzing and visualizing system load data.",
+    "description": "Simple System Monitor: Plugin for analyzing and visualizing system data like load and memory use.",
     "version": "0.1.0",
-    "keywords": ["system", "monitor", "load", "memory", "live"],
+    "keywords": ["monitor", "system", "load", "memory", "live"],
     "homepage": "https://github.com/job963/SimpleSysMon",
     "license": "GPL-3.0+",
     "authors": [
