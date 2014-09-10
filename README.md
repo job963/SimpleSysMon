@@ -3,6 +3,7 @@
 ## Description
 
 ## Documentation
+![](https://github.com/job963/SimpleSysMon/raw/master/screenshots/widgetLiveSysLoad.png)
 
 ## Contribute 
 
