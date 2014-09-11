@@ -2,8 +2,13 @@
 
 ## Description
 
+### Screenshots
+![](https://github.com/job963/SimpleSysMon/raw/master/screenshots/widgetLiveSysLoad-EN.png)
+
+![](https://github.com/job963/SimpleSysMon/raw/master/screenshots/settingLiveSysLoad-EN.png)
+
+
 ## Documentation
-![](https://github.com/job963/SimpleSysMon/raw/master/screenshots/widgetLiveSysLoad.png)
 
 ## Contribute 
 
