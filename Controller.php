@@ -16,8 +16,8 @@ namespace Piwik\Plugins\SimpleSysMon;
 
 use Piwik\API\Request;
 use Piwik\Piwik;
-use Piwik\Plugin\Settings;
-use Piwik\Settings\UserSetting;
+//use Piwik\Plugin\Settings;
+//use Piwik\Settings\UserSetting;
 //use Piwik\Settings\SystemSetting;
 use Piwik\View;
 
@@ -25,10 +25,10 @@ use Piwik\View;
 class Controller extends \Piwik\Plugin\Controller
 {
     /** @var UserSetting */
-    public $autoRefresh;
+    //public $autoRefresh;
 
     /** @var UserSetting */
-    public $refreshInterval;
+    //public $refreshInterval;
     
         
     /**
@@ -43,17 +43,24 @@ class Controller extends \Piwik\Plugin\Controller
         //$this->refreshInterval = new UserSetting('refreshInterval', Piwik::translate('SimpleSysMon_RefreshInterval') );
         //echo Settings::getSettingValue('refreshInterval');
         
+        $settings = new Settings('SimpleSysMon');
+        $autoRefresh  = $settings->autoRefresh->getValue();
+        $refreshInterval  = $settings->refreshInterval->getValue();
+
+        
         $output = '';
-        $output .= "<SCRIPT LANGUAGE='javascript'>
-                var reloadLiveLoad;
-                $('document').ready(function(){
-                    if (typeof reloadLiveLoad === 'undefined')
-                        reloadLiveLoad = setInterval(refreshLiveLoad,10000);
-                });
-                function refreshLiveLoad () {
-                    $('[widgetid=widgetSimpleSysMonwidgetLiveLoad]').dashboardWidget('reload', false, true);
-                }
-            </SCRIPT>";
+        if ($autoRefresh == 1) {
+            $output .= "<SCRIPT LANGUAGE='javascript'>
+                    var reloadLiveLoad;
+                    $('document').ready(function(){
+                        if (typeof reloadLiveLoad === 'undefined')
+                            reloadLiveLoad = setInterval(refreshLiveLoad,{$refreshInterval});
+                    });
+                    function refreshLiveLoad () {
+                        $('[widgetid=widgetSimpleSysMonwidgetLiveLoad]').dashboardWidget('reload', false, true);
+                    }
+                </SCRIPT>";
+        }
 
         $output .= $this->widgetLiveLoadTable();
 
@@ -71,10 +78,21 @@ class Controller extends \Piwik\Plugin\Controller
         $view = new View('@SimpleSysMon/widgetLiveSysLoad.twig');
         $this->setBasicVariablesView($view);
         
+        $settings = new Settings('SimpleSysMon');
+        $memoryDisplay  = $settings->memoryDisplay->getValue();
+
         $view->sysLoad = $result['AvgLoad'];
         $view->numCores = $result['NumCores'];
-        $view->memFreeVal = $result['FreeMemVal'];
-        $view->memFreeProc = $result['FreeMemProc'];
+        if ($memoryDisplay == 'free') {
+            $view->memLabel = Piwik::translate('SimpleSysMon_FreeMemory');
+            $view->memVal = $result['FreeMemVal'];
+            $view->memProc = $result['FreeMemProc'];
+        }
+        else {
+            $view->memLabel = Piwik::translate('SimpleSysMon_UsedMemory');
+            $view->memVal = $result['UsedMemVal'];
+            $view->memProc = $result['UsedMemProc'];
+        }
 
         return $view->render();
     }

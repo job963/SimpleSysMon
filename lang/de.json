@@ -5,6 +5,7 @@
 	"widgetLiveLoad": "Live Systemwerte",
         "SystemLoad": "System Auslastung",
         "FreeMemory": "Freier Speicher",
+        "UsedMemory": "Belegter Speicher",
         "Cores": "Kerne",
         "SettingsDescription": "Einstellungen für das Plugin Simple System Monitor",
         "AutoRefreshLabel": "Automatische Aktualisierung",
@@ -12,6 +13,8 @@
         "RefreshIntervalLabel": "Aktualisierungsintervall",
         "RefreshIntervalDescription": "Zeit in Sekunden",
         "RefreshIntervalHelp": "Geben sie einen Wert >= 5 ein",
+        "MemoryDisplayLabel": "Arbeitsspeicheranzeige",
+        "MemoryDisplayDescription": "Welcher Speicher soll angezeigt werden",
         "ErrMsgWrongValue": "Fehlerhafte Eingabe"
     }
 }

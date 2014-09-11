@@ -19,17 +19,18 @@ class Settings extends \Piwik\Plugin\Settings
 
     /** @var UserSetting */
     public $refreshInterval;
+
+    /** @var UserSetting */
+    public $memoryDisplay;
     
     
     protected function init()
     {
         $this->setIntroduction( Piwik::translate('SimpleSysMon_SettingsDescription') );
 
-        // User setting --> checkbox converted to bool
         $this->createAutoRefreshSetting();
-
-        // User setting --> textbox converted to int defining a validator and filter
         $this->createRefreshIntervalSetting();
+        $this->createMemoryDisplaySetting();
     }
     
 
@@ -39,7 +40,7 @@ class Settings extends \Piwik\Plugin\Settings
         $this->autoRefresh->type  = static::TYPE_BOOL;
         $this->autoRefresh->uiControlType = static::CONTROL_CHECKBOX;
         $this->autoRefresh->description   = Piwik::translate('SimpleSysMon_AutoRefreshDescription');
-        $this->autoRefresh->defaultValue  = false;
+        $this->autoRefresh->defaultValue  = TRUE;
 
         $this->addSetting($this->autoRefresh);
     }
@@ -47,7 +48,7 @@ class Settings extends \Piwik\Plugin\Settings
 
     private function createRefreshIntervalSetting()
     {
-        $this->refreshInterval        = new UserSetting('refreshInterval', Piwik::translate('SimpleSysMon_RefreshInterval') );
+        $this->refreshInterval        = new UserSetting('refreshInterval', Piwik::translate('SimpleSysMon_RefreshIntervalLabel') );
         $this->refreshInterval->type  = static::TYPE_INT;
         $this->refreshInterval->uiControlType = static::CONTROL_TEXT;
         $this->refreshInterval->uiControlAttributes = array('size' => 3);
@@ -61,6 +62,20 @@ class Settings extends \Piwik\Plugin\Settings
         };
 
         $this->addSetting($this->refreshInterval);
+    }
+
+    
+    private function createMemoryDisplaySetting()
+    {
+        $this->memoryDisplay        = new UserSetting('memoryDisplay', Piwik::translate('SimpleSysMon_MemoryDisplayLabel') );
+        $this->memoryDisplay->uiControlType = static::CONTROL_RADIO;
+        $this->memoryDisplay->description   = Piwik::translate('SimpleSysMon_MemoryDisplayDescription');
+        $this->memoryDisplay->availableValues = array(
+                                            'free' => Piwik::translate('SimpleSysMon_FreeMemory'), 
+                                            'used' => Piwik::translate('SimpleSysMon_UsedMemory')
+                                            );
+
+        $this->addSetting($this->memoryDisplay);
     }
     
 }

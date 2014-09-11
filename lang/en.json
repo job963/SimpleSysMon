@@ -5,13 +5,16 @@
 	"widgetLiveLoad": "Live System Load",
         "SystemLoad": "System Load",
         "FreeMemory": "Free Memory",
+        "UsedMemory": "Used Memory",
         "Cores": "Cores",
         "SettingsDescription": "Settings for SimpleSysMon",
         "AutoRefreshLabel": "Automatic Refresh",
-        "AutoRefreshDescription": "Aktivates the automatic refresh of the values",
+        "AutoRefreshDescription": "Activates the automatic refresh of the values",
         "RefreshIntervalLabel": "Refresh interval",
         "RefreshIntervalDescription": "Time in seconds",
         "RefreshIntervalHelp": "Enter a value >= 5",
+        "MemoryDisplayLabel": "Memory Display",
+        "MemoryDisplayDescription": "Choose which memory should be displayed",
         "ErrMsgWrongValue": "Wrong input"
     }
 }

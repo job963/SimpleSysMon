@@ -36,6 +36,8 @@ class API extends \Piwik\Plugin\API
                 'NumCores' => $this->getNumCores(),
                 'FreeMemVal' => $aMemInfo['MemFree'],
                 'FreeMemProc' => $aMemInfo['MemFree']/$aMemInfo['MemTotal']*100.0,
+                'UsedMemVal' => $aMemInfo['MemUsed'],
+                'UsedMemProc' => $aMemInfo['MemUsed']/$aMemInfo['MemTotal']*100.0,
             );
         }
 
@@ -57,6 +59,8 @@ class API extends \Piwik\Plugin\API
 	$meminfo['MemTotal'] = round($m['MemTotal'] / 1024);
 	//$meminfo['MemFree'] = round(($m['MemTotal'] -($m['MemFree'] + $m['Buffers'] + $m['Cached'])) / 1024);
 	$meminfo['MemFree'] = round($m['MemFree'] / 1024);
+	$meminfo['MemUsed'] = round(($m['MemTotal']-($m['MemFree']+$m['Cached'])) / 1024);
+	$meminfo['Cached'] = round($m['Cached'] / 1024);
 	return $meminfo;
     }
     
