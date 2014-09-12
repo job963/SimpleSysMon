@@ -1,10 +1,16 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+ * Piwik - Open source web analytics
+ * 
+ * @link http://piwik.org
+ * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
+ * 
+ * @copyright (c) 2014, Joachim Barthel
+ * @author Joachim Barthel <jobarthel@gmail.com>
+ * @category Piwik_Plugins
+ * @package SimpleSysMon
+ **/
 
 namespace Piwik\Plugins\SimpleSysMon;
 
@@ -14,15 +20,9 @@ use Piwik\Settings\UserSetting;
 
 class Settings extends \Piwik\Plugin\Settings
 {
-    /** @var UserSetting */
     public $autoRefresh;
-
-    /** @var UserSetting */
     public $refreshInterval;
-
-    /** @var UserSetting */
     public $memoryDisplay;
-    
     
     protected function init()
     {

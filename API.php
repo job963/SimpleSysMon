@@ -6,7 +6,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  * 
- * @copyright (c) 2011-2014, Joachim Barthel
+ * @copyright (c) 2014, Joachim Barthel
  * @author Joachim Barthel <jobarthel@gmail.com>
  * @category Piwik_Plugins
  * @package SimpleSysMon
@@ -57,7 +57,6 @@ class API extends \Piwik\Plugin\API
 	foreach(file('/proc/meminfo') as $ri)
 		$m[strtok($ri, ':')] = intval(strtok(''));
 	$meminfo['MemTotal'] = round($m['MemTotal'] / 1024);
-	//$meminfo['MemFree'] = round(($m['MemTotal'] -($m['MemFree'] + $m['Buffers'] + $m['Cached'])) / 1024);
 	$meminfo['MemFree'] = round($m['MemFree'] / 1024);
 	$meminfo['MemUsed'] = round(($m['MemTotal']-($m['MemFree']+$m['Cached'])) / 1024);
 	$meminfo['Cached'] = round($m['Cached'] / 1024);
