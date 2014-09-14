@@ -16,21 +16,12 @@ namespace Piwik\Plugins\SimpleSysMon;
 
 use Piwik\API\Request;
 use Piwik\Piwik;
-//use Piwik\Plugin\Settings;
-//use Piwik\Settings\UserSetting;
-//use Piwik\Settings\SystemSetting;
 use Piwik\View;
 
 
 class Controller extends \Piwik\Plugin\Controller
 {
-    /** @var UserSetting */
-    //public $autoRefresh;
 
-    /** @var UserSetting */
-    //public $refreshInterval;
-    
-        
     /**
      * Container for the Live Revenue widget, which add a scheduled refreshing
      **/
@@ -45,7 +36,7 @@ class Controller extends \Piwik\Plugin\Controller
         
         $settings = new Settings('SimpleSysMon');
         $autoRefresh  = $settings->autoRefresh->getValue();
-        $refreshInterval  = $settings->refreshInterval->getValue();
+        $refreshInterval  = $settings->refreshInterval->getValue() * 1000;
 
         
         $output = '';
