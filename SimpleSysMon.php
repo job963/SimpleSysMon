@@ -18,8 +18,6 @@ use Piwik\Piwik;
 use Piwik\WidgetsList;
 
 
-/**
- */
 class SimpleSysMon extends \Piwik\Plugin
 {
     /**
@@ -32,6 +30,7 @@ class SimpleSysMon extends \Piwik\Plugin
         );
     }
 
+    
     public function  addWidgets()
     {
         WidgetsList::add('Simple System Monitor', 'SimpleSysMon_widgetLiveLoad', 'SimpleSysMon', 'widgetLiveLoad');

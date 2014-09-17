@@ -18,6 +18,7 @@ use Piwik\Piwik;
 use Piwik\Settings\SystemSetting;
 use Piwik\Settings\UserSetting;
 
+
 class Settings extends \Piwik\Plugin\Settings
 {
     public $autoRefresh;

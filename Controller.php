@@ -23,21 +23,13 @@ class Controller extends \Piwik\Plugin\Controller
 {
 
     /**
-     * Container for the Live Revenue widget, which add a scheduled refreshing
+     * Container for the Live System Load widget, which adds the auto-refreshing
      **/
     function widgetLiveLoad()
     {
-        /*
-        $this->autoRefresh = new UserSetting('autoRefresh', Piwik::translate('SimpleSysMon_AutoRefreshLabel') );
-        echo Settings::getSettingValue($this->autoRefresh);
-        */
-        //$this->refreshInterval = new UserSetting('refreshInterval', Piwik::translate('SimpleSysMon_RefreshInterval') );
-        //echo Settings::getSettingValue('refreshInterval');
-        
         $settings = new Settings('SimpleSysMon');
         $autoRefresh  = $settings->autoRefresh->getValue();
         $refreshInterval  = $settings->refreshInterval->getValue() * 1000;
-
         
         $output = '';
         if ($autoRefresh == 1) {
@@ -60,7 +52,7 @@ class Controller extends \Piwik\Plugin\Controller
     
 
     /**
-     * This widget shows a table which displays the last orders
+     * This widget shows a table with cpu load and memory use
      **/
     function widgetLiveLoadTable()
     {

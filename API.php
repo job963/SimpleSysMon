@@ -20,56 +20,67 @@ use Piwik\DataTable;
 class API extends \Piwik\Plugin\API
 {
 
-
     function getLiveSysLoadData($idSite)
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $sysData = array(
-                'AvgLoad' => 9.99,
-                'FreeMem' => 1
-            );
-        }
-        else {
-            $aMemInfo = $this->getMemInfo();
-            $sysData = array(
-                'AvgLoad' => $this->getSysLoad(),
-                'NumCores' => $this->getNumCores(),
-                'FreeMemVal' => $aMemInfo['MemFree'],
-                'FreeMemProc' => $aMemInfo['MemFree']/$aMemInfo['MemTotal']*100.0,
-                'UsedMemVal' => $aMemInfo['MemUsed'],
-                'UsedMemProc' => $aMemInfo['MemUsed']/$aMemInfo['MemTotal']*100.0,
-            );
-        }
+        $aMemInfo = $this->_getMemInfo();
+        $sysData = array(
+            'AvgLoad' => $this->_getSysLoad(),
+            'NumCores' => (int) $this->_getNumCores(),
+            'FreeMemVal' => $aMemInfo['MemFree'],
+            'FreeMemProc' => $aMemInfo['MemFree']/$aMemInfo['MemTotal']*100.0,
+            'UsedMemVal' => $aMemInfo['MemUsed'],
+            'UsedMemProc' => $aMemInfo['MemUsed']/$aMemInfo['MemTotal']*100.0,
+        );
 
         return $sysData;
     }
     
     
-    function getSysLoad()
+    function _getSysLoad()
     {
-        $aAvgLoad = sys_getloadavg();
-        return $aAvgLoad[0]/$this->getNumCores()*100.0;
+        if (function_exists('sys_getloadavg')) {
+            $aAvgLoad = sys_getloadavg();
+            $sysLoad = $aAvgLoad[0]/$this->getNumCores()*100.0;
+        }
+        else {
+            $sysLoad = 0;
+        }
+        return $sysLoad;
     }
     
     
-    function getMemInfo()
+    function _getMemInfo()
     {
-	foreach(file('/proc/meminfo') as $ri)
-		$m[strtok($ri, ':')] = intval(strtok(''));
-	$meminfo['MemTotal'] = round($m['MemTotal'] / 1024);
-	$meminfo['MemFree'] = round($m['MemFree'] / 1024);
-	$meminfo['MemUsed'] = round(($m['MemTotal']-($m['MemFree']+$m['Cached'])) / 1024);
-	$meminfo['Cached'] = round($m['Cached'] / 1024);
-	return $meminfo;
+        if (@file_exists('/proc/cpuinfo')) {
+            foreach(file('/proc/meminfo') as $ri)
+                    $m[strtok($ri, ':')] = intval(strtok(''));
+            $meminfo['MemTotal'] = round($m['MemTotal'] / 1024);
+            $meminfo['MemFree'] = round($m['MemFree'] / 1024);
+            $meminfo['MemUsed'] = round(($m['MemTotal']-($m['MemFree']+$m['Cached'])) / 1024);
+            $meminfo['Cached'] = round($m['Cached'] / 1024);
+        }
+        else {
+            $meminfo['MemTotal'] = 0.001; // for avoiding div0
+            $meminfo['MemFree'] = 0;
+            $meminfo['MemUsed'] = 0;
+            $meminfo['Cached'] = 0;
+        }		
+        return $meminfo;
     }
     
     
-    function getNumCores()
+    function _getNumCores()
     {
-        $cpuinfo = file_get_contents('/proc/cpuinfo');
-        preg_match_all('/^processor/m', $cpuinfo, $matches);
- 
-        return count($matches[0]);
+        if (@file_exists('/proc/cpuinfo')) {
+            $cpuinfo = file_get_contents('/proc/cpuinfo');
+            preg_match_all('/^processor/m', $cpuinfo, $matches);
+            $numCores = count($matches[0]);
+        }
+        else {
+            $numCores = 0.001; // for avoiding div0
+        }
+
+        return $numCores;
     }
 	
 }
