@@ -40,7 +40,7 @@ class API extends \Piwik\Plugin\API
     {
         if (function_exists('sys_getloadavg')) {
             $aAvgLoad = sys_getloadavg();
-            $sysLoad = $aAvgLoad[0]/$this->_getNumCores()*100.0;
+            $sysLoad = $aAvgLoad[0]/$this->getNumCores()*100.0;
         }
         else {
             $sysLoad = 0;
@@ -51,7 +51,7 @@ class API extends \Piwik\Plugin\API
     
     function _getMemInfo()
     {
-        if (@file_exists('/proc/meminfo')) {
+        if (@file_exists('/proc/cpuinfo')) {
             foreach(file('/proc/meminfo') as $ri)
                     $m[strtok($ri, ':')] = intval(strtok(''));
             $meminfo['MemTotal'] = round($m['MemTotal'] / 1024);
