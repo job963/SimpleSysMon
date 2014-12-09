@@ -23,7 +23,7 @@ class Controller extends \Piwik\Plugin\Controller
 {
 
     /**
-     * Container for the Live System Load widget, which adds the auto-refreshing
+     * Container for the Live System Load widget, which adds the auto-refreshing by javascript
      **/
     function widgetLiveLoad()
     {

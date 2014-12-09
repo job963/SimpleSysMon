@@ -1,6 +1,6 @@
 {
     "SimpleSysMon": {
-        "PluginDescription": "Simple System Monitor: Plugin zur Analyse und Visualisierung von Systemlastwerten.",
+        "PluginDescription": "Simple System Monitor: Plugin zur Analyse und Visualisierung von Systemlastwerten in Echtzeit.",
 	"SimpleSysMon": "Simple System Monitor",
 	"widgetLiveLoad": "Liveanzeige: Systemwerte",
 	"widgetLiveLoadBars": "Livegrafik: Systemwerte",

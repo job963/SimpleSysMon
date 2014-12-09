@@ -31,6 +31,9 @@ class SimpleSysMon extends \Piwik\Plugin
     }
 
     
+    /**
+     * Register the widgets
+     */
     public function  addWidgets()
     {
         WidgetsList::add('Simple System Monitor', 'SimpleSysMon_widgetLiveLoad', 'SimpleSysMon', 'widgetLiveLoad');
