@@ -2,7 +2,8 @@
     "SimpleSysMon": {
         "PluginDescription": "Simple System Monitor: Plugin for analyzing and visualizing system load data.",
 	"SimpleSysMon": "Simple System Monitor",
-	"widgetLiveLoad": "Live System Load",
+	"widgetLiveLoad": "Live Display: System Load",
+	"widgetLiveLoadBars": "Live Graphics: System Load",
         "SystemLoad": "System Load",
         "FreeMemory": "Free Memory",
         "UsedMemory": "Used Memory",

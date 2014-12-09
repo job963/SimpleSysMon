@@ -79,5 +79,55 @@ class Controller extends \Piwik\Plugin\Controller
 
         return $view->render();
     }
+
+    
+    /**
+     * Container for the Live System Load Bars widget, which adds the auto-refreshing
+     **/
+    function widgetLiveLoadBars()
+    {
+        $settings = new Settings('SimpleSysMon');
+        $autoRefresh  = $settings->autoRefresh->getValue();
+        $refreshInterval  = $settings->refreshInterval->getValue() * 1000;
+        
+        $output = '';
+        if ($autoRefresh == 1) {
+            $output .= "<SCRIPT LANGUAGE='javascript'>
+                    var reloadLiveLoadBars;
+                    $('document').ready(function(){
+                        if (typeof reloadLiveLoadBars === 'undefined')
+                            reloadLiveLoadBars = setInterval(refreshLiveLoadBars,{$refreshInterval});
+                    });
+                    function refreshLiveLoadBars () {
+                        $('[widgetid=widgetSimpleSysMonwidgetLiveLoadBars]').dashboardWidget('reload', false, true);
+                    }
+                </SCRIPT>";
+        }
+
+        $output .= $this->elementLiveLoadBars();
+
+        return $output;
+    }
+    
+
+    /**
+     * This widget shows horizontal bars with cpu load and memory use
+     **/
+    function elementLiveLoadBars()
+    {
+        $result = Request::processRequest('SimpleSysMon.getLiveSysLoadData');
+
+        $view = new View('@SimpleSysMon/widgetLiveSysLoadBars.twig');
+        $this->setBasicVariablesView($view);
+        
+        $view->sysLoad = array(
+                            'avgload' => array( 'used' => round($result['AvgLoad'],0),
+                                                'free' => round(100.0 - $result['AvgLoad'],0) ),
+                            'memory'  => array( 'used' => round($result['UsedMemProc'],0),
+                                                'free' => round(100.0 - $result['UsedMemProc'],0) )
+                            );
+
+        return $view->render();
+    }
     
 }

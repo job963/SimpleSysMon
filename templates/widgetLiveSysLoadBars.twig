@@ -1,0 +1,28 @@
+{# Twig template for UptimeRobotMonitor / TimeBarElement #}
+
+<div style="margin:15px;">
+    <div style="white-space:nowrap;">{{'SimpleSysMon_SystemLoad'|translate}}</div>
+    
+    <table style="width:100%; border-collapse:collapse;margin-top:4px;">
+        <tr style="height:18px;">
+            <td style="width:{{ sysLoad.avgload.used|number_format }}%; background-color:#28a428;"></td>
+            <td style="width:{{ sysLoad.avgload.free|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.avgload.used|number_format }} %</td>
+        </tr>
+    </table>
+    
+    <table style="width:100%; border-collapse:collapse;">
+        <tr><td colspan="2">&nbsp;</td></tr>
+    </table>
+        
+    <div style="white-space:nowrap;">{{'SimpleSysMon_UsedMemory'|translate}}</div>
+    
+    <table style="width:100%; border-collapse:collapse;margin-top:4px;">
+        <tr style="height:18px;">
+            <td style="width:{{ sysLoad.memory.used|number_format }}%; background-color:#28a428;"></td>
+            <td style="width:{{ sysLoad.memory.free|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.memory.used|number_format }} %</td>
+        </tr>
+    </table>
+        
+    <div style="height:1.0em;"> </div>
+    
+</div>
