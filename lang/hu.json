@@ -1,0 +1,21 @@
+{
+    "SimpleSysMon": {
+        "PluginDescription": "Simple System Monitor: Rendszer terheltségi adatok analizálása és vizuális megjelenítése.",
+	    "SimpleSysMon": "Simple System Monitor",
+	    "widgetLiveLoad": "Élő nézet: Rendszer terheltség",
+	    "widgetLiveLoadBars": "Élő nézet (grafikon): Rendszer terheltség",
+        "SystemLoad": "Rendszer terheltség",
+        "FreeMemory": "Szabad memória",
+        "UsedMemory": "Használt memória",
+        "Cores": "Mag",
+        "SettingsDescription": "SimpleSysMon beállításai",
+        "AutoRefreshLabel": "Automatikus frissítés",
+        "AutoRefreshDescription": "Automatikusan frissíti az értékeket",
+        "RefreshIntervalLabel": "Frissítés intervallum",
+        "RefreshIntervalDescription": "Idő (másodperc)",
+        "RefreshIntervalHelp": "Adjon meg egy >= 5 értéket",
+        "MemoryDisplayLabel": "Memória kijelzés",
+        "MemoryDisplayDescription": "Válassza ki a kijelzendő memória használatot",
+        "ErrMsgWrongValue": "Érvénytelen bemenet"
+    }
+}
