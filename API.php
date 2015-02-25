@@ -26,7 +26,6 @@ class API extends \Piwik\Plugin\API
         $aDiskInfo = $this->_getDiskSpace();
         $aNetInfo = $this->_getNetTraffic();
         $aNetInfo['NetTotal'] = 1000.0;
-        //$aNetInfo['Free'] = $aNetInfo['NetTotal'] - ($aNetInfo['Upload']+$aNetInfo['Download']);
         
         $sysData = array(
             'AvgLoad' => $this->_getSysLoad(),
