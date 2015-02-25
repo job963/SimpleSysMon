@@ -1,4 +1,4 @@
-{# Twig template for SimpleSysMon / SysLoadBars #}
+{# Twig template for SimpleSysMon - SysLoadBars #}
 
 <div style="margin:15px;">
     <div style="white-space:nowrap;">{{'SimpleSysMon_SystemLoad'|translate}}</div>
@@ -18,8 +18,36 @@
     
     <table style="width:100%; border-collapse:collapse;margin-top:4px;">
         <tr style="height:18px;">
-            <td style="width:{{ sysLoad.memory.used|number_format }}%; background-color:#28a428;"></td>
-            <td style="width:{{ sysLoad.memory.free|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.memory.used|number_format }} %</td>
+            <td style="width:{{ sysLoad.memory.used|number_format }}%; background-color:#d4291f;" title="{{ sysLoad.memory.used|number_format }}%"></td>
+            <td style="width:{{ sysLoad.memory.cached|number_format }}%; background-color:#c0c000;" title="{{ sysLoad.memory.cached|number_format }}%"></td>
+            <td style="width:{{ sysLoad.memory.free|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.memory.used+sysLoad.memory.cached|number_format }} %</td>
+        </tr>
+    </table>
+    
+    <table style="width:100%; border-collapse:collapse;">
+        <tr><td colspan="2">&nbsp;</td></tr>
+    </table>
+        
+    <div style="white-space:nowrap;">{{'SimpleSysMon_NetTraffic'|translate}}</div>
+    
+    <table style="width:100%; border-collapse:collapse;margin-top:4px;">
+        <tr style="height:18px;">
+            <td style="width:{{ sysLoad.net.download|number_format }}%; background-color:#d4291f;" title="{{ sysLoad.net.download|number_format }}%"></td>
+            <td style="width:{{ sysLoad.net.upload|number_format }}%; background-color:#c0c000;" title="{{ sysLoad.net.upload|number_format }}%"></td>
+            <td style="width:{{ sysLoad.net.free|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.net.download+sysLoad.net.upload|number_format }} %</td>
+        </tr>
+    </table>
+    
+    <table style="width:100%; border-collapse:collapse;">
+        <tr><td colspan="2">&nbsp;</td></tr>
+    </table>
+        
+    <div style="white-space:nowrap;">{{'SimpleSysMon_UsedDisk'|translate}}</div>
+    
+    <table style="width:100%; border-collapse:collapse;margin-top:4px;">
+        <tr style="height:18px;">
+            <td style="width:{{ sysLoad.disk.used|number_format }}%; background-color:#d4291f;" title="{{ sysLoad.disk.used|number_format }}%"></td>
+            <td style="width:{{ sysLoad.disk.free|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.disk.used|number_format }} %</td>
         </tr>
     </table>
         

@@ -6,7 +6,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  * 
- * @copyright (c) 2014, Joachim Barthel
+ * @copyright (c) 2014, 2015 Joachim Barthel
  * @author Joachim Barthel <jobarthel@gmail.com>
  * @category Piwik_Plugins
  * @package SimpleSysMon
@@ -124,9 +124,14 @@ class Controller extends \Piwik\Plugin\Controller
                             'avgload' => array( 'used' => round($result['AvgLoad'],0),
                                                 'free' => round(100.0 - $result['AvgLoad'],0) ),
                             'memory'  => array( 'used' => round($result['UsedMemProc'],0),
-                                                'free' => round(100.0 - $result['UsedMemProc'],0) )
+                                                'cached' => round($result['CachedMemProc'],0),
+                                                'free' => round(100.0 - $result['UsedMemProc'],0) ),
+                            'net'     => array( 'upload' => round($result['UpNetProc'],0),
+                                                'download' => round($result['DownNetProc'],0),
+                                                'free' => round(100.0 - $result['DownNetProc'],0) ),
+                            'disk'    => array( 'used' => round($result['UsedDiskProc'],0),
+                                                'free' => round($result['FreeDiskProc'],0) )
                             );
-
         return $view->render();
     }
     

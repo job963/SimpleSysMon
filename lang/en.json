@@ -8,6 +8,8 @@
         "FreeMemory": "Free Memory",
         "UsedMemory": "Used Memory",
         "Cores": "Cores",
+        "UsedDisk": "Used Diskspace",
+        "NetTraffic": "Network",
         "SettingsDescription": "Settings for SimpleSysMon",
         "AutoRefreshLabel": "Automatic Refresh",
         "AutoRefreshDescription": "Activates the automatic refresh of the values",
