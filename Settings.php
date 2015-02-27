@@ -6,7 +6,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  * 
- * @copyright (c) 2014, Joachim Barthel
+ * @copyright (c) 2014, 2015 Joachim Barthel
  * @author Joachim Barthel <jobarthel@gmail.com>
  * @category Piwik_Plugins
  * @package SimpleSysMon
@@ -29,9 +29,33 @@ class Settings extends \Piwik\Plugin\Settings
     {
         $this->setIntroduction( Piwik::translate('SimpleSysMon_SettingsDescription') );
 
+        // system settings
+        $this->createNetworkBandwidthSetting();
+        
+        // user defined settings
         $this->createAutoRefreshSetting();
         $this->createRefreshIntervalSetting();
         $this->createMemoryDisplaySetting();
+    }
+    
+
+    private function createNetworkBandwidthSetting()
+    {
+        $this->networkBandwidth                         = new SystemSetting('networkBandwidth', Piwik::translate('SimpleSysMon_NetworkBandwidthLabel') );
+        $this->networkBandwidth->type                   = static::TYPE_INT;
+        $this->networkBandwidth->readableByCurrentUser  = true;
+        $this->networkBandwidth->uiControlType          = static::CONTROL_TEXT;
+        $this->networkBandwidth->uiControlAttributes    = array('size' => 5);
+        $this->networkBandwidth->description            = Piwik::translate('SimpleSysMon_NetworkBandwidthDescription');
+        $this->networkBandwidth->inlineHelp             = Piwik::translate('SimpleSysMon_NetworkBandwidthHelp');
+        $this->networkBandwidth->defaultValue           = '1000';
+        $this->networkBandwidth->validate               = function ($value, $setting) {
+        if ($value < 5) {
+            throw new \Exception( Piwik::translate('SimpleSysMon_ErrMsgWrongValue') );
+        }
+        };
+
+        $this->addSetting($this->networkBandwidth);
     }
     
 

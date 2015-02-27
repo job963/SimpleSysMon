@@ -111,7 +111,7 @@ class Controller extends \Piwik\Plugin\Controller
     
 
     /**
-     * This widget shows horizontal bars with cpu load and memory use
+     * This widget shows horizontal bars with cpu load, memory use, network traffic and disk use
      **/
     function elementLiveLoadBars()
     {
@@ -123,14 +123,24 @@ class Controller extends \Piwik\Plugin\Controller
         $view->sysLoad = array(
                             'avgload' => array( 'used' => round($result['AvgLoad'],0),
                                                 'free' => round(100.0 - $result['AvgLoad'],0) ),
-                            'memory'  => array( 'used' => round($result['UsedMemProc'],0),
-                                                'cached' => round($result['CachedMemProc'],0),
-                                                'free' => round(100.0 - $result['UsedMemProc'],0) ),
-                            'net'     => array( 'upload' => round($result['UpNetProc'],0),
-                                                'download' => round($result['DownNetProc'],0),
-                                                'free' => round(100.0 - $result['DownNetProc'],0) ),
-                            'disk'    => array( 'used' => round($result['UsedDiskProc'],0),
-                                                'free' => round($result['FreeDiskProc'],0) )
+            
+                            'memory'  => array( 'procUsed'   => round($result['UsedMemProc'],0),
+                                                'procCached' => round($result['CachedMemProc'],0),
+                                                'procFree'   => round(100.0 - $result['UsedMemProc'],0), 
+                                                'valUsed'    => round($result['UsedMemVal'],0), 
+                                                'valCached'  => round($result['CachedMemVal'],0), 
+                                                'valFree'    => round($result['FreeMemProc'],0) ),
+            
+                            'net'     => array( 'procUpload'   => round($result['UpNetProc'],0),
+                                                'procDownload' => round($result['DownNetProc'],0),
+                                                'procFree'     => round(100.0 - $result['DownNetProc'],0),
+                                                'valUpload'    => round($result['UpNetVal'],0),
+                                                'valDownload'  => round($result['DownNetVal'],0) ),
+            
+                            'disk'    => array( 'procUsed' => round($result['UsedDiskProc'],0),
+                                                'procFree' => round($result['FreeDiskProc'],0),
+                                                'valUsed'  => round($result['UsedDiskVal'],0),
+                                                'valFree'  => round($result['FreeDiskVal'],0) )
                             );
         return $view->render();
     }

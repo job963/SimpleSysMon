@@ -25,7 +25,9 @@ class API extends \Piwik\Plugin\API
         $aMemInfo = $this->_getMemInfo();
         $aDiskInfo = $this->_getDiskSpace();
         $aNetInfo = $this->_getNetTraffic();
-        $aNetInfo['NetTotal'] = 1000.0;
+        
+        $settings = new Settings('SimpleSysMon');
+        $aNetInfo['NetTotal'] = $settings->networkBandwidth->getValue();
         
         $sysData = array(
             'AvgLoad' => $this->_getSysLoad(),
@@ -109,8 +111,8 @@ class API extends \Piwik\Plugin\API
     {
         $diskinfo = array();
         
-        $diskinfo['Free'] = disk_free_space('./') / (1024*1024);
-        $diskinfo['Total'] = disk_total_space('./') / (1024*1024);
+        $diskinfo['Free'] = disk_free_space('./') / (1000000000);
+        $diskinfo['Total'] = disk_total_space('./') / (1000000000);
         $diskinfo['Used'] = $diskinfo['Total'] - $diskinfo['Free'];
         
         return $diskinfo;
@@ -119,31 +121,63 @@ class API extends \Piwik\Plugin\API
     
     function _getNetTraffic()
     {
-        $netTraffic1 = $this->_getNetStat();
-        sleep(1);
-        $netTraffic2 = $this->_getNetStat();
+        $netTraffic1 = $this->_getPreviousNetTrans();
+        $netTraffic2 = $this->_getActualNetTrans();
         $netinfo = array();
-        $netinfo['Upload'] = ($netTraffic2['receive']-$netTraffic1['receive']) / (1024.0 * 1.0);
-        $netinfo['Download'] = ($netTraffic2['transmit']-$netTraffic1['transmit']) / (1024.0 * 1.0);
+        $netinfo['Upload'] = ($netTraffic2['receive']-$netTraffic1['receive']) / ($netTraffic2['time']-$netTraffic1['time']) / 1000.0;
+        $netinfo['Download'] = ($netTraffic2['transmit']-$netTraffic1['transmit']) / ($netTraffic2['time']-$netTraffic1['time']) / 1000.0;
         return $netinfo;
     }
     
     
-    function _getNetStat()
+    function _getPreviousNetTrans()
     {
+        $netTemp = $this->_readNetTrans();
+        $netTrans = array();
+        $netTrans['time'] = (float)$netTemp[0];
+        $netTrans['receive'] = (float)$netTemp[1];
+        $netTrans['transmit'] = (float)$netTemp[2];
+        return $netTrans;
+    }
+    
+    
+    function _getActualNetTrans()
+    {
+        $netTrans = array();
         if (@file_exists('/proc/net/dev')) {
-            $netStat = array();
-            $netStat['receive'] = 0.0;
-            $netStat['transmit'] = 0.0;
+            $netTrans['receive'] = 0.0;
+            $netTrans['transmit'] = 0.0;
             foreach(file('/proc/net/dev') as $ri) {
                 if (strpos($ri,':') !== false) {
                     $matches = preg_split('/\s+/', trim(str_replace(':',' ',$ri)));
-                    $netStat['receive'] += $matches[1];
-                    $netStat['transmit'] += $matches[9];
+                    $netTrans['receive'] += $matches[1];
+                    $netTrans['transmit'] += $matches[9];
                 }
             }
+            $netTrans['time'] = (float)microtime(true);
+            $this->_saveNetTrans($netTrans);
         }
-        return $netStat;
+        return $netTrans;
+    }
+    
+    
+    function _saveNetTrans($netTrans)
+    {
+        $fh = fopen(PIWIK_INCLUDE_PATH . '/plugins/SimpleSysMon/temp/nettrans.tmp', 'w');
+        fputs( $fh, number_format( $netTrans['time'], 4, '.', '' ) . "," . $netTrans['receive'] . "," . $netTrans['transmit'] );
+        fclose($fh);
+        
+        return;
+    }
+    
+    
+    function _readNetTrans()
+    {
+        $fh = fopen(PIWIK_INCLUDE_PATH . '/plugins/SimpleSysMon/temp/nettrans.tmp', 'r');
+        $trans = fgetcsv( $fh );
+        fclose($fh);
+        
+        return $trans;
     }
 	
 }
