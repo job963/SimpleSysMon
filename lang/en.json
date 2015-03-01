@@ -12,6 +12,8 @@
         "Cores": "Cores",
         "UsedDisk": "Diskspace",
         "NetTraffic": "Network",
+        "LabelDownload": "Down",
+        "LabelUpload": "Up",
         "SettingsDescription": "Settings for SimpleSysMon (Hint: This plugin has systemwide and personal settings)",
         "NetworkBandwidthLabel": "Maximum Bandwidth",
         "NetworkBandwidthDescription": "Sum of download and upload",

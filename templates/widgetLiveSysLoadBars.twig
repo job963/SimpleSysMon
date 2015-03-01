@@ -22,8 +22,8 @@
     
     <table style="width:100%; border-collapse:collapse;margin-top:4px;">
         <tr style="height:18px;">
-            <td style="width:{{ sysLoad.avgload.used|number_format }}%; background-color:{{greenBar}};"></td>
-            <td style="width:{{ sysLoad.avgload.free|number_format }}%; background-color:{{grayBar}};font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.avgload.used|number_format }} %</td>
+            <td style="width:{{ sysLoad.avgload.used|number_format }}%; background-color:{{blueBar}};"></td>
+            <td style="width:{{ sysLoad.avgload.free|number_format }}%; background-color:{{grayBar}};font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.avgload.used|round }} %</td>
         </tr>
     </table>
     
@@ -36,9 +36,9 @@
     <div class="sysbar">
         <table style="width:100%; border-collapse:collapse;margin-top:4px;">
             <tr style="height:18px;">
-                <td style="width:{{ sysLoad.memory.procUsed|number_format }}%; color:#ffffff; background-color:{{blueBar}};"><span>{{'SimpleSysMon_LabelUsedMemory'|translate}}: {{ sysLoad.memory.valUsed|number_format }} MB</span></td>
-                <td style="width:{{ sysLoad.memory.procCached|number_format }}%; background-color:{{fawnBar}};"><span>{{'SimpleSysMon_LabelCachedMemory'|translate}}: {{ sysLoad.memory.valCached|number_format }} MB</span></td>
-                <td style="width:{{ sysLoad.memory.procFree|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.memory.procUsed+sysLoad.memory.procCached|number_format }} %</td>
+                <td style="width:{{ sysLoad.memory.procUsed|number_format }}%; color:#ffffff; background-color:{{blueBar}};"><span>{{'SimpleSysMon_LabelUsedMemory'|translate}}: {{ sysLoad.memory.valUsed|round }} MB</span></td>
+                <td style="width:{{ sysLoad.memory.procCached|number_format }}%; background-color:{{fawnBar}};"><span>{{'SimpleSysMon_LabelCachedMemory'|translate}}: {{ sysLoad.memory.valCached|round }} MB</span></td>
+                <td style="width:{{ sysLoad.memory.procFree|number_format }}%; background-color:{{grayBar}};font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.memory.procUsed+sysLoad.memory.procCached|round }} %</td>
             </tr>
         </table>
     </div>
@@ -52,9 +52,9 @@
     <div class="sysbar">
         <table style="width:100%; border-collapse:collapse;margin-top:4px;">
             <tr style="height:18px;">
-                <td style="width:{{ sysLoad.net.procDownload|number_format }}%; color:#ffffff; background-color:{{blueBar}};"><span>{{'SimpleSysMon_LabelDownload'|translate}}: {{ sysLoad.net.valDownload|number_format }} kB/s</span></td>
-                <td style="width:{{ sysLoad.net.procUpload|number_format }}%; background-color:{{fawnBar}};"><span>{{'SimpleSysMon_LabelUpload'|translate}}: {{ sysLoad.net.valUpload|number_format }} kB/s</span></td>
-                <td style="width:{{ sysLoad.net.procFree|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.net.procDownload+sysLoad.net.procUpload|number_format }} %</td>
+                <td style="width:{{ sysLoad.net.procDownload|number_format }}%; color:#ffffff; background-color:{{blueBar}};"><span>{{'SimpleSysMon_LabelDownload'|translate}}: {{ sysLoad.net.valDownload|round }} kB/s</span></td>
+                <td style="width:{{ sysLoad.net.procUpload|number_format }}%; background-color:{{fawnBar}};"><span>{{'SimpleSysMon_LabelUpload'|translate}}: {{ sysLoad.net.valUpload|round }} kB/s</span></td>
+                <td style="width:{{ sysLoad.net.procFree|number_format }}%; background-color:{{grayBar}};font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.net.procDownload+sysLoad.net.procUpload|round }} %</td>
             </tr>
         </table>
     </div>
@@ -68,8 +68,8 @@
     <div class="sysbar">
         <table style="width:100%; border-collapse:collapse;margin-top:4px;">
             <tr style="height:18px;">
-                <td style="width:{{ sysLoad.disk.procUsed|number_format }}%; color:#ffffff; background-color:{{blueBar}};"><span>{{ sysLoad.disk.valUsed|number_format(1) }} GB</span></td>
-                <td style="width:{{ sysLoad.disk.procFree|number_format }}%; background-color:#e8e8e8;font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.disk.procUsed|number_format }} %</td>
+                <td style="width:{{ sysLoad.disk.procUsed|number_format }}%; color:#ffffff; background-color:{{blueBar}};"><span>{{ sysLoad.disk.valUsed|number_format(1,'','') }} GB</span></td>
+                <td style="width:{{ sysLoad.disk.procFree|number_format }}%; background-color:{{grayBar}};font-size:1.1em;font-weight:bold;">&nbsp;{{ sysLoad.disk.procUsed|number_format }} %</td>
             </tr>
         </table>
     </div>
