@@ -10,6 +10,7 @@
  * @author Joachim Barthel <jobarthel@gmail.com>
  * @category Piwik_Plugins
  * @package SimpleSysMon
+ * 
  **/
 
 namespace Piwik\Plugins\SimpleSysMon;
@@ -111,8 +112,8 @@ class API extends \Piwik\Plugin\API
     {
         $diskinfo = array();
         
-        $diskinfo['Free'] = disk_free_space('./') / (1000000000);
-        $diskinfo['Total'] = disk_total_space('./') / (1000000000);
+        $diskinfo['Free'] = disk_free_space('./') / (10000000000);
+        $diskinfo['Total'] = disk_total_space('./') / (10000000000);
         $diskinfo['Used'] = $diskinfo['Total'] - $diskinfo['Free'];
         
         return $diskinfo;

@@ -6,10 +6,11 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  * 
- * @copyright (c) 2014, Joachim Barthel
+ * @copyright (c) 2014, 2015 Joachim Barthel
  * @author Joachim Barthel <jobarthel@gmail.com>
  * @category Piwik_Plugins
  * @package SimpleSysMon
+ * 
  **/
 
 namespace Piwik\Plugins\SimpleSysMon;
